@@ -1,5 +1,4 @@
-from . import styles
-from .utils import playSfx
+from utils import playSfx
 from PySide6.QtCore import Qt
 from PySide6.QtMultimedia import QSoundEffect
 from PySide6.QtGui import QColor
@@ -12,8 +11,6 @@ Text Input
 class FTextInput(QLineEdit):
     def __init__(self):
         super(FTextInput, self).__init__()
-
-        self.setStyleSheet(styles.FTEXT_INPUT)
         self.setMinimumHeight(30)
 
 """
@@ -24,7 +21,6 @@ class FProgressBar(QProgressBar):
         super(FProgressBar, self).__init__()
 
         self.playSound = playSound
-        self.setStyleSheet(styles.FPROG_BAR)
         self.setValue(0)
 
         self.sfx = QSoundEffect()
@@ -44,15 +40,15 @@ class FButton(QPushButton):
 
         self.shadow_effect = QGraphicsDropShadowEffect()
 
-        if role == "normal":
-            self.setStyleSheet(styles.FBTN_NORMAL)
-            self.shadow_effect.setColor(QColor(0, 179, 179))
-        elif role == "warn":
-            self.shadow_effect.setColor(QColor(223, 165, 7))
-            self.setStyleSheet(styles.FBTN_WARN)
-        elif role == "danger":
-            self.shadow_effect.setColor(QColor(204, 0, 0))
-            self.setStyleSheet(styles.FBTN_DANGER)
+        # if role == "normal":
+            # self.setStyleSheet(styles.FBTN_NORMAL)
+            # self.shadow_effect.setColor(QColor(0, 179, 179))
+        # elif role == "warn":
+            # self.shadow_effect.setColor(QColor(223, 165, 7))
+            # self.setStyleSheet(styles.FBTN_WARN)
+        # elif role == "danger":
+            # self.shadow_effect.setColor(QColor(204, 0, 0))
+            # self.setStyleSheet(styles.FBTN_DANGER)
 
         self.onClick = None
         self.sfx = QSoundEffect()
@@ -75,7 +71,7 @@ class FSlider(QSlider):
     def __init__(self):
         super(FSlider, self).__init__()
 
-        self.setStyleSheet(styles.FSLIDER)
+        #self.setStyleSheet(styles.FSLIDER)
         self.setMinimumWidth(30)
 
 
@@ -86,7 +82,7 @@ class FTabWidget(QTabWidget):
     def __init__(self):
         super(FTabWidget, self).__init__()
 
-        self.setStyleSheet(styles.FTAB)
+        #self.setStyleSheet(styles.FTAB)
         # self.setTabShape(QTabWidget.TabShape.Triangular)
         self.addTab(QWidget(), "CPU")
         self.addTab(QWidget(), "MEM")
@@ -101,7 +97,7 @@ class TitleBar(QFrame):
         self.state = 2 # for windowed mode and 3 for maximum size
 
         # title bar
-        self.setStyleSheet(styles.TITLE_BAR)
+        # self.setStyleSheet(styles.TITLE_BAR)
         self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
         self.setMinimumHeight(40)
         self.setMaximumHeight(40)
@@ -116,7 +112,8 @@ class TitleBar(QFrame):
 
         # title text
         self.title_text = QLabel()
-        self.title_text.setStyleSheet(styles.TITLE_TEXT)
+        self.title_text.setObjectName("win-title")
+        # self.title_text.setStyleSheet(styles.TITLE_TEXT)
         self.title_bar_layout.addWidget(self.title_text)
 
         # hide window
