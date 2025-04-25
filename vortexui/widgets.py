@@ -1,8 +1,10 @@
-from utils import playSfx
+from .utils import playSfx
 from PySide6.QtCore import Qt
 from PySide6.QtMultimedia import QSoundEffect
-from PySide6.QtGui import QColor
-from PySide6.QtWidgets import QLineEdit, QProgressBar, QPushButton, QGraphicsDropShadowEffect, QSlider, QTabWidget, QWidget, QFrame, QSizePolicy, QHBoxLayout, QLabel
+from PySide6.QtWidgets import (
+    QLineEdit, QProgressBar, QPushButton, QGraphicsDropShadowEffect, QSlider, 
+    QTabWidget, QWidget, QFrame, QSizePolicy, QHBoxLayout, QLabel, QDialog, QVBoxLayout
+)
 
 
 """
@@ -95,6 +97,7 @@ class TitleBar(QFrame):
         self.layout = self.window.layout
         self.offset = None
         self.state = 2 # for windowed mode and 3 for maximum size
+        print(type(self.layout))
 
         # title bar
         # self.setStyleSheet(styles.TITLE_BAR)
@@ -171,4 +174,3 @@ class TitleBar(QFrame):
     def mouseReleaseEvent(self, event):
         self.offset = None
         event.accept()
-

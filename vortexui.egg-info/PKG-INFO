@@ -1,12 +1,11 @@
-Metadata-Version: 2.1
+Metadata-Version: 2.4
 Name: vortexui
 Version: 0.0.1
-Summary: function futuristic ui toolkit
-Home-page: UNKNOWN
+Summary: Functional Futuristic UI Toolkit Based On PySide6
 Author: Raghav Kumar
-Author-email: kumaraghav079@gmail.com
-License: UNKNOWN
-Platform: UNKNOWN
-
-UNKNOWN
-
+Author-email: Raghav <kumaraghav079@gmail.com>
+License: MIT
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: PySide6
+Dynamic: author

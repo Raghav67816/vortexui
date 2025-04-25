@@ -1,9 +1,10 @@
-MANIFEST.in
 README.md
 pyproject.toml
 setup.py
 vortexui/__init__.py
 vortexui/styles.py
+vortexui/test.py
+vortexui/theme_engine.py
 vortexui/utils.py
 vortexui/widgets.py
 vortexui/windows.py
@@ -12,8 +13,3 @@ vortexui.egg-info/SOURCES.txt
 vortexui.egg-info/dependency_links.txt
 vortexui.egg-info/requires.txt
 vortexui.egg-info/top_level.txt
-vortexui/fonts/Rajdhani-Bold.ttf
-vortexui/fonts/Rajdhani-Light.ttf
-vortexui/fonts/Rajdhani-Medium.ttf
-vortexui/fonts/Rajdhani-Regular.ttf
-vortexui/fonts/Rajdhani-SemiBold.ttf
