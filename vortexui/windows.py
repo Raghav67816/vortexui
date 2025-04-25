@@ -1,7 +1,7 @@
-import sys
 from .widgets import FButton, TitleBar
 from PySide6.QtCore import Qt, QSize
 from PySide6.QtGui import QColor, QFont
+from PySide6.QtMultimedia import QSoundEffect
 
 from PySide6.QtWidgets import QMainWindow, QVBoxLayout, QWidget, QFrame, QSizePolicy, QHBoxLayout, QLabel, QApplication, QDialog, QPushButton
 
@@ -113,7 +113,7 @@ class MessageBox(QDialog):
         
         # bind functions to buttons
         for index, btn in enumerate(self.std_btns):
-            print(f"Type of button: {type(btn)}")
+            btn.setMinimumSize(100, 30)
             btn.connect_func(self.funcs[index])
             self.btn_box_layout.addWidget(btn)
             self.btn_box_layout.setAlignment(Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignBottom)

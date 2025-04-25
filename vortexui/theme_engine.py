@@ -1,7 +1,7 @@
 from json import load
 from .windows import FMainWindow
 from os import path, mkdir, listdir
-from PySide6.QtWidgets import QScrollArea
+from PySide6.QtWidgets import QScrollArea, QCheckBox
 
 class ThemeEngine:
     def __init__(self):
@@ -99,3 +99,15 @@ class ThemeEngine:
             child.setStyleSheet(style_scroll_area)
             child.horizontalScrollBar().setStyleSheet(style_scroll_bar)
             child.verticalScrollBar().setStyleSheet(style_scroll_bar)
+
+    def get_check_boxes(self, window: FMainWindow):
+        test_check_box = QCheckBox()
+        children = window.findChildren(type(test_check_box))
+        del test_check_box
+
+        for child in children:
+            child.setStyleSheet(
+                "QCheckBox::indicator{background-color: $primary-blue; border: 1px solid $secondary-blue; height: 20px; width: 20px;} QCheckBox::indicator::unchecked{background-color: $primary-blue;} QCheckBox::indicator::checked{background-color: $secondary-blue}".replace(
+                    "$primary-blue", self.active_colors['primary-blue']
+                ).replace("$secondary-blue", self.active_colors['secondary-blue'])
+            )

@@ -1,8 +1,8 @@
-from vortexui.widgets import FButton
-from vortexui.windows import FMainWindow, MessageBox
-from PySide6.QtWidgets import QApplication, QLabel
 from PySide6.QtGui import QFont
+from vortexui.widgets import FButton
 from vortexui.theme_engine import ThemeEngine
+from vortexui.windows import FMainWindow, MessageBox
+from PySide6.QtWidgets import QApplication, QLabel, QCheckBox
 
 class SystemMonitorApp(FMainWindow):
     def __init__(self):
@@ -12,7 +12,6 @@ class SystemMonitorApp(FMainWindow):
 
         self.setWindowTitle("Application Test")
         self.theme_engine = ThemeEngine()
-        self.setStyleSheet(self.theme_engine.active_scheme(self.theme_engine.default_theme))        
 
         self.btn = FButton("Open Message Box")
         self.btn.setMinimumSize(100, 40)
@@ -24,6 +23,14 @@ class SystemMonitorApp(FMainWindow):
         self.about_text.setWordWrap(True)
         self.add_content(self.about_text)
         self.add_content(self.btn)
+
+        self.check_box = QCheckBox("Condition: True ")
+        self.check_box.setObjectName("check_box")
+        self.add_content(self.check_box)
+
+        self.setStyleSheet(self.theme_engine.active_scheme(self.theme_engine.default_theme))        
+        self.theme_engine.get_scroll_areas(self)
+        self.theme_engine.get_check_boxes(self)
 
     def on_btn_click(self):
         print("button clicked")
