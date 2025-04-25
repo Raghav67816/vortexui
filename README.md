@@ -7,6 +7,8 @@ Every thought of having JARVIS like interface ? or Tired of having just JARVIS s
 
 Vortex UI is built upon PySide6/Qt. It's functional and you can create your own apps.
 
+![Test Window](https://raw.githubusercontent.com/Raghav67816/vortexui/refs/heads/master/screenshot.png)
+
 ### Features
  - Compatible for daily use
  - Dynamic themes
