@@ -1,5 +1,5 @@
 from json import load
-from windows import FMainWindow
+from .windows import FMainWindow
 from os import path, mkdir, listdir
 from PySide6.QtWidgets import QScrollArea
 
@@ -40,6 +40,7 @@ class ThemeEngine:
         with open(f"{self.default_path}/base.css", "r") as base_style_file:
             base_style = base_style_file.read()
             base_style_file.close()
+
 
         base_style = base_style.replace("$primary-blue", str(theme['primary-blue']))
         base_style = base_style.replace("$secondary-blue", str(theme['secondary-blue']))
