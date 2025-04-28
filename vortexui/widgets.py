@@ -24,6 +24,7 @@ class FProgressBar(QProgressBar):
 
         self.playSound = playSound
         self.setValue(0)
+        self.setMaximumHeight(20)
 
         self.sfx = QSoundEffect()
         self.valueChanged.connect(self.onValueChanged)
@@ -97,7 +98,6 @@ class TitleBar(QFrame):
         self.layout = self.window.layout
         self.offset = None
         self.state = 2 # for windowed mode and 3 for maximum size
-        print(type(self.layout))
 
         # title bar
         # self.setStyleSheet(styles.TITLE_BAR)
