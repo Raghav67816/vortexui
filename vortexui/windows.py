@@ -1,9 +1,8 @@
-from .widgets import FButton, TitleBar
+from PySide6.QtGui import QFont
 from PySide6.QtCore import Qt, QSize
-from PySide6.QtGui import QColor, QFont
-from PySide6.QtMultimedia import QSoundEffect
+from .widgets import FButton, TitleBar
 
-from PySide6.QtWidgets import QMainWindow, QVBoxLayout, QWidget, QFrame, QSizePolicy, QHBoxLayout, QLabel, QApplication, QDialog, QPushButton
+from PySide6.QtWidgets import QMainWindow, QVBoxLayout, QWidget,  QHBoxLayout, QApplication, QDialog
 
 class FMainWindow(QMainWindow):
     def __init__(self):
@@ -36,6 +35,9 @@ class FMainWindow(QMainWindow):
 
     def add_content(self, content: QWidget):
         self.content_layout.addWidget(content)
+
+    def add_layout(self, layout):
+        self.content_layout.addLayout(layout)
 
 class Application:
     def __init__(self, window):

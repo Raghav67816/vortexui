@@ -1,7 +1,7 @@
 from json import load
 from .windows import FMainWindow
 from os import path, mkdir, listdir
-from PySide6.QtWidgets import QScrollArea, QCheckBox
+from PySide6.QtWidgets import QScrollArea, QCheckBox, QTableWidget
 
 class ThemeEngine:
     def __init__(self):
@@ -110,4 +110,24 @@ class ThemeEngine:
                 "QCheckBox::indicator{background-color: $primary-blue; border: 1px solid $secondary-blue; height: 20px; width: 20px;} QCheckBox::indicator::unchecked{background-color: $primary-blue;} QCheckBox::indicator::checked{background-color: $secondary-blue}".replace(
                     "$primary-blue", self.active_colors['primary-blue']
                 ).replace("$secondary-blue", self.active_colors['secondary-blue'])
+            )
+
+    def get_table_widgets(self, window: FMainWindow):
+        test_table_widget = QTableWidget()
+        children = window.findChildren(type(test_table_widget))
+
+        del test_table_widget
+
+        for child in children:
+            print(child.objectName)
+            child.setStyleSheet(
+                """
+                QTableWidget{
+                    background-color: transparent;
+                }
+
+                QHeaderView::section{
+                    background-color: $primary-blue
+                }
+                """.replace("$primary-blue", self.active_colors['primary-blue'])
             )
