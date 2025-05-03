@@ -1,5 +1,6 @@
 from theme_engine import ThemeEngine
 from windows import FMainWindow
+from widgets import FButton
 from PySide6.QtWidgets import QApplication, QScrollArea, QLabel, QWidget, QGroupBox
 from PySide6.QtGui import QFont
 
@@ -34,6 +35,9 @@ class Window(FMainWindow):
             )
         )
         self.theme_engine.get_scroll_areas(self)
+
+        self.btn = FButton("Hello World")
+        self.content_layout.addWidget(self.btn)
 
 
 app = QApplication()

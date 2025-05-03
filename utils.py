@@ -5,6 +5,6 @@ from getpass import getuser
 
 def playSfx(sfx, sound_name: str):
     source = f"/home/{getuser()}/tars/sfx/{sound_name}.wav"
-    sfx.setSource(source)
+    sfx.setSource(QUrl.fromLocalFile(source))
     sfx.setVolume(0.3)
     sfx.play()

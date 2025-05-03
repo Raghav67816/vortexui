@@ -47,6 +47,8 @@ class ThemeEngine:
         base_style = base_style.replace("$secondary-blue", str(theme['secondary-blue']))
         base_style = base_style.replace("$font-name", str(theme['font-name']))
         base_style = base_style.replace("$family_name", str(theme['family-name']))
+        base_style = base_style.replace("$warn-yellow", str(theme['warn-yellow']))
+        base_style = base_style.replace("$danger-red", str(theme['danger-red']))
         
         return base_style
 
@@ -132,3 +134,10 @@ class ThemeEngine:
                 }
                 """.replace("$primary-blue", self.active_colors['primary-blue'])
             )
+
+    def modify_style(self, old_style: str):
+        old_style = old_style.replace("$primary-blue", self.active_colors['primary-blue'])
+        old_style = old_style.replace("$secondary-blue", self.active_colors['secondary-blue'])
+        old_style = old_style.replace("$warn-yellow", self.active_colors['warn-yellow'])
+        old_style = old_style.replace("$danger-red", self.active_colors['danger-red'])
+        return old_style

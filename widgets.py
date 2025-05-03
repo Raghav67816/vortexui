@@ -1,9 +1,10 @@
 from .utils import playSfx
 from PySide6.QtCore import Qt
+
 from PySide6.QtMultimedia import QSoundEffect
 from PySide6.QtWidgets import (
     QLineEdit, QProgressBar, QPushButton, QGraphicsDropShadowEffect, QSlider, 
-    QTabWidget, QWidget, QFrame, QSizePolicy, QHBoxLayout, QLabel, QDialog, QVBoxLayout
+    QTabWidget, QWidget, QFrame, QSizePolicy, QHBoxLayout, QLabel
 )
 
 
@@ -41,30 +42,22 @@ class FButton(QPushButton):
     def __init__(self, label: str, role: str = "normal", parent=None):
         super().__init__(label)
 
-        self.shadow_effect = QGraphicsDropShadowEffect()
-
-        # if role == "normal":
-            # self.setStyleSheet(styles.FBTN_NORMAL)
-            # self.shadow_effect.setColor(QColor(0, 179, 179))
-        # elif role == "warn":
-            # self.shadow_effect.setColor(QColor(223, 165, 7))
-            # self.setStyleSheet(styles.FBTN_WARN)
-        # elif role == "danger":
-            # self.shadow_effect.setColor(QColor(204, 0, 0))
-            # self.setStyleSheet(styles.FBTN_DANGER)
+        self.setProperty("role", role)
+        self.setProperty("borderColor", "default")
 
         self.onClick = None
         self.sfx = QSoundEffect()
 
-        self.shadow_effect.setOffset(0, 5)
-        self.shadow_effect.setBlurRadius(100)
-        self.setGraphicsEffect(self.shadow_effect)
-
-    def connect_func(self, func: callable):
+    def connect_func(self, func: callable, attach_sender: bool = False):
         def wrapper():
             playSfx(self.sfx, "click")
-            func()
+            if attach_sender:
+                func(self)
+            else:
+                func()
         self.clicked.connect(wrapper)
+
+    
 
 
 """
@@ -101,6 +94,7 @@ class TitleBar(QFrame):
 
         # title bar
         # self.setStyleSheet(styles.TITLE_BAR)
+        self.setObjectName("title-bar")
         self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
         self.setMinimumHeight(40)
         self.setMaximumHeight(40)
@@ -120,22 +114,26 @@ class TitleBar(QFrame):
         self.title_bar_layout.addWidget(self.title_text)
 
         # hide window
-        self.hide_win_btn = FButton("-")
+        self.hide_win_btn = FButton("-", "normal")
+        self.hide_win_btn.setProperty("borderColor", "default")
         self.hide_win_btn.setMaximumSize(30, 30)
         self.hide_win_btn.connect_func(self.hide_win)
         self.title_bar_layout.addWidget(self.hide_win_btn)
 
         # fullscreen btn
-        self.win_state_btn = FButton("#")
+        self.win_state_btn = FButton("#", "normal")
+        self.win_state_btn.setProperty("borderColor", "default")
         self.win_state_btn.setMaximumSize(30, 30)
         self.title_bar_layout.addWidget(self.win_state_btn)
         self.win_state_btn.connect_func(self.handleWinState)
 
         # close btn
         self.close_btn = FButton("X", "danger")
+        self.close_btn.setProperty("borderColor", "default")
         self.close_btn.connect_func(self.close_win)
         self.close_btn.setMaximumSize(30, 30)
         self.title_bar_layout.addWidget(self.close_btn)
+
 
     def setTitle_(self, title: str):
         self.title_text.setText(title)
