@@ -1,6 +1,7 @@
 from .utils import playSfx
 from PySide6.QtCore import Qt
-
+from PySide6.QtGui import QIcon
+from abc import ABC, abstractmethod
 from PySide6.QtMultimedia import QSoundEffect
 from PySide6.QtWidgets import (
     QLineEdit, QProgressBar, QPushButton, QGraphicsDropShadowEffect, QSlider, 
@@ -48,13 +49,21 @@ class FButton(QPushButton):
         self.onClick = None
         self.sfx = QSoundEffect()
 
-    def connect_func(self, func: callable, attach_sender: bool = False):
+    def connect_func(self, func: callable, args: list = None, attach_sender: bool = False):
         def wrapper():
             playSfx(self.sfx, "click")
-            if attach_sender:
+            if attach_sender and args is None:
                 func(self)
-            else:
+
+            elif attach_sender and args is not None:
+                func(self, *args)
+
+            elif not attach_sender and args is not None:
+                func(*args)
+
+            elif not attach_sender and args is None:
                 func()
+
         self.clicked.connect(wrapper)
 
     
@@ -172,3 +181,22 @@ class TitleBar(QFrame):
     def mouseReleaseEvent(self, event):
         self.offset = None
         event.accept()
+
+
+class BaseDock(ABC):
+
+    @abstractmethod
+    def init_ui(self):
+        pass
+
+    @abstractmethod
+    def add_app_to_dock(self, app_name: str):
+        pass
+    
+    @abstractmethod
+    def launch_app_from_dock(self, exec_str: str):
+        pass
+
+    @abstractmethod
+    def add_icon_to_sys_tray(self, app_name: str, app_icon: QIcon):
+        pass
